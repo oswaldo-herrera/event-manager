@@ -13,8 +13,16 @@
   }
 }
 
+body{
+  background-color: rgb(87, 86, 86);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .App-header {
-  background-color: #282c34;
+  /* background-color: #050505; */
+  background-image: url('../public/fondo_01.png');
+  background-size: cover;
+  background-repeat: no-repeat;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
