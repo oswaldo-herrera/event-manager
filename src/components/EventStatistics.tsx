@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 
 const EventStatistics: React.FC = () => {
-  // Obtenemos los eventos desde el estado global
+  // Obtenemos todos los eventos
   const events = useSelector((state: RootState) => state.events.events);
 
   // Función para contar eventos por mes

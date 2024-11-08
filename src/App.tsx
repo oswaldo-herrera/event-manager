@@ -20,14 +20,14 @@ function App() {
   const [time, setTime] = React.useState('');
   const [description, setDescription] = React.useState('');
 
-  // Función para abrir el formulario
+  // Función para abrir el formulario formulario de evento
   const handleOpen = () => setOpen(true);
-  // Función para cerrar el formulario
+  // Función para cerrar el formulario de evento
   const handleClose = () => setOpen(false);
 
-   // Función para abrir el modal de estadísticas
+   // Función para abrir el modal de las graficas
    const handleStatsOpen = () => setStatsOpen(true);
-   // Función para cerrar el modal de estadísticas
+   // Función para cerrar el modal de las graficas
    const handleStatsClose = () => setStatsOpen(false);
   
 
@@ -40,94 +40,80 @@ function App() {
     }
   };
 
-  
-
-  
-
   return (
     <div className="App">
       <header className="App-header">
       
         <h1 >Gestión de Eventos</h1>
-        <Box display="flex" alignItems="center">
-          {/* Botón para abrir el formulario */}
+        <Box display="flex" alignItems="center">      
           <Button variant="contained" color="primary" onClick={handleOpen}>
             Agregar Evento
           </Button>
-
-          {/* Botón para abrir el modal de estadísticas */}
+        
           <Button variant="contained" color="secondary" onClick={handleStatsOpen} style={{ marginLeft: '10px' }}>
             Ver Estadísticas
           </Button>
         </Box>
 
-        {/* Lista de eventos */}
+        
+
+        {/* Lista de eventos*/}
         <div>
-      {events.length > 0 ? (
-        <Grid container spacing={3} justifyContent="center" alignItems="center">
-          {events.map((event) => (
-            <Grid item xs={12}  sm={events.length === 1 ? 12 : 6} md={events.length === 1 ? 12 : 6}  key={event.id}  >
-              <Card
-                style={{
-                  backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                  backdropFilter: 'blur(8px)',
-                  borderRadius: '15px',
-                  transition: 'transform 0.3s, box-shadow 0.3s',
-                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-                  marginTop: '20px',
-                  color:'white',
-                  maxWidth: '400px', 
-                  maxHeight: '250px', 
-                  textAlign:'center'
-                 
-                  
-                  
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'scale(1.05)';
-                  e.currentTarget.style.boxShadow = '0 8px 12px rgba(0, 0, 0, 0.3)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'scale(1)';
-                  e.currentTarget.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
-                }}
-              >
-                <CardContent>
-                  <Typography variant="h5" component="h2" sx={{ textTransform: 'uppercase' }}>
-                    {event.name}
-                  </Typography>
+          <Grid container direction="column" alignItems="center" spacing={2}>
+            {events.map((event) => (
+              <Grid item key={event.id} xs={12} style={{ display: 'flex', justifyContent: 'center' }}>
+                <Card
+                  style={{
+                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                    backdropFilter: 'blur(8px)',
+                    borderRadius: '15px',
+                    transition: 'transform 0.3s, box-shadow 0.3s',
+                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                    marginTop: '20px',
+                    color: 'white',
+                    maxWidth: '400px',
+                    textAlign: 'center'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.05)';
+                    e.currentTarget.style.boxShadow = '0 8px 12px rgba(0, 0, 0, 0.3)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                    e.currentTarget.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+                  }}
+                >
+                  <CardContent>
+                    <Typography variant="h5" component="h2" sx={{ textTransform: 'uppercase' }}>
+                      {event.name}
+                    </Typography>
+                    <Divider sx={{ my: 2 }} />
+                    <Typography color="white" sx={{ textTransform: 'uppercase' }}>
+                      Fecha: {event.date}
+                    </Typography>
+                    <Typography color="white" sx={{ textTransform: 'uppercase' }}>
+                      Hora: {event.time}
+                    </Typography>
+                    <Typography variant="body2" component="p" sx={{ textTransform: 'uppercase' }}>
+                      Especificaciones: {event.description}
+                    </Typography>
+                  </CardContent>
+                  <CardActions style={{ justifyContent: 'center' }}>
+                    <Button
+                      size="small"
+                      variant="contained"
+                      color="warning"
+                      onClick={() => dispatch(removeEvent(event.id))}
+                    >
+                      Eliminar
+                    </Button>
+                  </CardActions>
                   <Divider sx={{ my: 2 }} />
-                  <Typography color="white" sx={{ textTransform: 'uppercase' }}>
-                    Fecha: {event.date} 
-                  </Typography>
-                  <Typography color="white" sx={{ textTransform: 'uppercase' }}>
-                    Hora: {event.time}
-                  </Typography>
-                  
-                  <Typography variant="body2" component="p" sx={{ textTransform: 'uppercase' }}>
-                    Especificaciones: {event.description}
-                  </Typography>
-                  
-                </CardContent>
-                <CardActions style={{ justifyContent: 'center' }}>
-                  <Button
-                    size="small"
-                    variant="contained"
-                    color="warning"
-                    onClick={() => dispatch(removeEvent(event.id))}
-                  >
-                    Eliminar
-                  </Button>
-                </CardActions>
-                <Divider sx={{ my: 2 }} />
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      ) : (
-        <p>No hay eventos.</p>
-      )}
-    </div>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </div> 
 
          
 
@@ -186,7 +172,7 @@ function App() {
           </DialogActions>
         </Dialog>
 
-        {/* Modal para ver estadísticas */}
+        {/* Modal para ver las graficas */}
         <Dialog open={statsOpen} onClose={handleStatsClose} maxWidth="md" fullWidth>
           <DialogTitle>Estadísticas de Eventos</DialogTitle>
           <DialogContent>
