@@ -22,7 +22,7 @@ Funcionalidades
 
 Instrucciones de Instalación y Ejecución
 1.	Clona el repositorio:
-git clone https://github.com/usuario/event-manager.git
+git clone https://github.com/oswaldo-herrera/event-manager.git
 cd event-manager
 2.	Instala las dependencias:
 npm install
